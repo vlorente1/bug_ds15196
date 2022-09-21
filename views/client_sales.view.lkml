@@ -1,21 +1,21 @@
 view: client_sales {
   derived_table: {
     sql:
-       SELECT 1 id, 1 client_id, 10 amount
+       SELECT 1 id, 1 client_id, 'Dog' department, 10 amount
        UNION ALL
-       SELECT 2 id, 1 client_id, 20 amount
+       SELECT 2 id, 1 client_id, 'Dog' department, 20 amount
        UNION ALL
-       SELECT 3 id, 2 client_id, 10 amount
+       SELECT 3 id, 2 client_id, 'Cat' department, 10 amount
        UNION ALL
-       SELECT 4 id, 2 client_id, 35 amount
+       SELECT 4 id, 2 client_id, 'Dog' department, 35 amount
        UNION ALL
-       SELECT 5 id,  2 client_id, 10 amount
+       SELECT 5 id,  2 client_id, 'Dog' department, 10 amount
        UNION ALL
-       SELECT 6 id, 3 client_id, 35 amount
+       SELECT 6 id, 3 client_id, 'Dog' department, 35 amount
        UNION ALL
-       SELECT 7 id, 3 client_id, 40 amount
+       SELECT 7 id, 3 client_id, 'Cat' department, 40 amount
        UNION ALL
-       SELECT 8 id, 3 client_id, 35 amount
+       SELECT 8 id, 3 client_id, 'Cat' department, 35 amount
        ;;
 
     indexes: ["id", "client_id"]
@@ -31,6 +31,11 @@ view: client_sales {
     label: "Client ID"
     type: number
     sql: ${TABLE}.client_id ;;
+  }
+
+  dimension: department {
+    type: string
+    sql: ${TABLE}.department ;;
   }
 
   dimension: Amount {
